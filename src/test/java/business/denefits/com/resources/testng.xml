@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="TestNG Testing">
+	<test name="Annotation" allow-return-values="true">
+		<classes>
+			<class name="business.denefits.com.testcases.DummyTestA" />
+		</classes>
+	</test>
+	
+	<test name="Assertions" allow-return-values="true">
+		<classes>
+			<class name="business.denefits.com.testcases.DummyTestB" />
+		</classes>
+	</test>
+	
+	<test name="Data Providers" allow-return-values="true">
+		<classes>
+			<class name="business.denefits.com.testcases.DummyTestC" />
+		</classes>
+	</test>
+</suite>
+
