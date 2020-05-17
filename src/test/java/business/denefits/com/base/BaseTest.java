@@ -1,22 +1,37 @@
 package business.denefits.com.base;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Date;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+
+import business.denefits.com.util.ExtentManager;
+
 
 
 public class BaseTest {
 	
-	public WebDriver driver;
+	public static WebDriver driver;
 	public Properties prop;
+	public ExtentReports rep = ExtentManager.getInstance();
+	public static ExtentTest test;
+	
 	
 	public void openBrowser(String bType)
 	{
@@ -115,16 +130,30 @@ public class BaseTest {
 
 	public void reportPass(String msg)
 	{
-		
+		test.log(LogStatus.PASS, "Test Passed" + msg);
 	}
 	
 	public void reportFailure(String msg)
 	{
-		
+		test.log(LogStatus.FAIL, "Test failed " +msg);
+		takeScreenShot();
+		Assert.fail(msg);
 	}
 	
-	public void takeScreensot()
+	
+	public static void takeScreenShot()
 	{
-		
+			Date d=new Date();
+			String screenshotName=d.toString().replace(":", "_").replace(" ", "_")+".png";
+			File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+			try {
+				FileUtils.copyFile(srcFile, new File(System.getProperty("user.dir")+"//screenshots//" +screenshotName));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		test.log(LogStatus.INFO, "Screenshot -> " +test.addScreenCapture(System.getProperty("user.dir")+"//screenshots//" +screenshotName));
+			
 	}
+	
 }

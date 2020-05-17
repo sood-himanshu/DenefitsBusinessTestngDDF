@@ -2,15 +2,19 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="21421" started-at="2020-05-16T20:25:01 IST" finished-at="2020-05-16T20:25:22 IST">
+  <suite name="Default suite" duration-ms="33158" started-at="2020-05-17T12:15:05 IST" finished-at="2020-05-17T12:15:38 IST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="21421" started-at="2020-05-16T20:25:01 IST" finished-at="2020-05-16T20:25:22 IST">
+    <test name="Default test" duration-ms="33158" started-at="2020-05-17T12:15:05 IST" finished-at="2020-05-17T12:15:38 IST">
       <class name="business.denefits.com.testcases.DummyTestB">
-        <test-method status="PASS" signature="B1()[pri:1, instance:business.denefits.com.testcases.DummyTestB@33cb5951]" name="B1" duration-ms="21359" started-at="2020-05-16T20:25:01 IST" finished-at="2020-05-16T20:25:22 IST">
+        <test-method status="PASS" signature="B1()[pri:1, instance:business.denefits.com.testcases.DummyTestB@3967e60c]" name="B1" duration-ms="32658" started-at="2020-05-17T12:15:05 IST" finished-at="2020-05-17T12:15:37 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- B1 -->
+        <test-method status="PASS" signature="quit()[pri:0, instance:business.denefits.com.testcases.DummyTestB@3967e60c]" name="quit" is-config="true" duration-ms="445" started-at="2020-05-17T12:15:37 IST" finished-at="2020-05-17T12:15:38 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quit -->
       </class> <!-- business.denefits.com.testcases.DummyTestB -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
