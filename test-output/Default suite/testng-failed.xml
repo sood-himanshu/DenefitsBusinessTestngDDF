@@ -5,7 +5,8 @@
     <classes>
       <class name="business.denefits.com.testcases.DummyTestB">
         <methods>
-          <include name="B1"/>
+          <include name="quit"/>
+          <include name="B1" invocation-numbers="0"/>
         </methods>
       </class> <!-- business.denefits.com.testcases.DummyTestB -->
     </classes>

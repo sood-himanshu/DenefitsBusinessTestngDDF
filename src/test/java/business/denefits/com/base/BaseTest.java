@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -67,14 +68,14 @@ public class BaseTest {
 		
 	}
 	
-	public void click()
+	public void click(String locatorkey)
 	{
-		
+		getElement(locatorkey).click();
 	}
 	
-	public void type()
+	public void type(String locatorkey, String text)
 	{
-		
+		getElement(locatorkey).sendKeys(text);
 	}
 	
 	public WebElement getElement(String locatorkey)
@@ -88,15 +89,16 @@ public class BaseTest {
 			}
 			else if(locatorkey.endsWith("_xpath"))
 			{
-				e = driver.findElement(By.id(prop.getProperty(locatorkey)));
+				e = driver.findElement(By.xpath(prop.getProperty(locatorkey)));
 			}
 			else if(locatorkey.endsWith("_name"))
 			{
-				e = driver.findElement(By.id(prop.getProperty(locatorkey)));
+				e = driver.findElement(By.name(prop.getProperty(locatorkey)));
 			}
 			else
 			{
 				reportFailure("Locator not found" + locatorkey);
+				Assert.fail("Locator not founc" +locatorkey);
 			}
 		}
 		catch(Exception ex)
@@ -116,14 +118,51 @@ public class BaseTest {
 		return false;
 	}
 	
-	public boolean verifyText()
+	public boolean verifyText(String locatorkey, String expectedResult)
 	{
-		return false;
+		String actualText = getElement(locatorkey).getText().trim();
+		String expectedText = prop.getProperty(expectedResult);
+		if(actualText.equals(expectedText))
+		{
+			return true;
+		}
+		else
+		{		
+			return false;
+		}
 	}
+		
 	
-	public boolean isElementPresent()
+	public boolean isElementPresent(String locatorkey)
 	{
-		return false;
+		List<WebElement> elementList=null;
+		if(locatorkey.endsWith("_id"))
+		{
+			elementList = driver.findElements(By.id(prop.getProperty(locatorkey)));
+		}
+		else if(locatorkey.endsWith("_xpath"))
+		{
+			elementList = driver.findElements(By.xpath(prop.getProperty(locatorkey)));
+		}
+		else if(locatorkey.endsWith("_name"))
+		{
+			elementList = driver.findElements(By.name(prop.getProperty(locatorkey)));
+		}
+		else
+		{
+			reportFailure("Locator not found" + locatorkey);
+			Assert.fail("Locator not founc" +locatorkey);
+		}
+		
+		if(elementList.size()==0)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+		
 	}
 	
 	/**************Reporting Function********************************************************************/
